@@ -1,8 +1,6 @@
-FROM centos
-MAINTAINER deniz@root
-#RUN yum install git -y
-#ADD https://github.com/DenizParlak/hayat.git /home/hayat.git
-#COPY zsh.rpm /home/
-WORKDIR /home
-ENV company=check24 user=deniz pass=flesruoykcuf
-#CMD ls -l
+FROM php:7.3-apache
+#RUN apt-get update
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN a2enmod rewrite
+COPY src/ /var/www/html/
+EXPOSE 80
